@@ -1,0 +1,20 @@
+version: '3.4'
+services:
+
+ swat-intel:
+   image: swat-intel/swat-intel
+   restart: always
+   build: 
+     context: .
+     dockerfile: Dockerfile   
+   working_dir: /swat-intel
+   container_name: swat-intel
+   environment:
+     TZ: America/Sao_paulo
+     SPRING_BOOT_ENVIRONMENT: Production
+   volumes:
+     - ./swat-intel:/swat-intel
+     - ~/.m2:/root/.m2
+   ports:
+     - "8080:8080"
+   command: mvn clean spring-boot:run
